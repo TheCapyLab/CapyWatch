@@ -1,8 +1,6 @@
-export type CapybaraResult =  Promise<{ [key: string] : any  }>;
 export interface Capybara {
     name: string;
-    report: (options: ConcreteCapybaraOptions, result: CapybaraResult) => void;
-    getStat: () => CapybaraResult;
+    run: (options: ConcreteCapybaraOptions) => Promise<CapybaraResult>;
 }
 
 export interface RegisteredCapybara {
@@ -10,6 +8,7 @@ export interface RegisteredCapybara {
     capybara: Capybara;
     options: ConcreteCapybaraOptions[] | ConcreteCapybaraOptions;
     type: 'single' | 'group';
+    shouter: Shouter;
 }
 
 export interface CapybaraOptions {
@@ -20,6 +19,17 @@ export interface CapybaraOptions {
 
 export interface ConcreteCapybaraOptions {
     threshold: number;
+    message: string;
+    colour: string;
+}
+
+export interface Shouter {
+    name: string;
+    shout: (object: CapybaraResult) => void;
+}
+
+export interface CapybaraResult {
+    title: string;
     message: string;
     colour: string;
 }
