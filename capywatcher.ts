@@ -35,6 +35,7 @@ export default class CapyWatcher {
             type: normalizedOptions.length > 1 ? 'group' : 'single',
             shouter: shouter || ConsoleShouter
         };
+        console.log(_capybara);
         return _capybara;
     }
 
